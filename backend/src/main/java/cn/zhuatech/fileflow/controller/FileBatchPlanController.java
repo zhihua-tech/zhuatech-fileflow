@@ -1,2 +1,2 @@
-/* Copyright 2026 上海如静知华信息科技有限公司 */
+/* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 package cn.zhuatech.fileflow.controller;import cn.zhuatech.fileflow.service.FileBatchPlanService;import jakarta.validation.Valid;import org.springframework.web.bind.annotation.*;@RestController @RequestMapping("/api/fileflow") @CrossOrigin public class FileBatchPlanController{private final FileBatchPlanService s;public FileBatchPlanController(FileBatchPlanService s){this.s=s;}@PostMapping("/plan") FileBatchPlanService.Result plan(@Valid @RequestBody FileBatchPlanService.Request r){return s.plan(r);}}

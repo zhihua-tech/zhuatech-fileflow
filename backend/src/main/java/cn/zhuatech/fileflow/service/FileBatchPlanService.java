@@ -1,4 +1,4 @@
-/* Copyright 2026 上海如静知华信息科技有限公司 */
+/* Copyright 2026 上海如静知华信息科技有限公司 · https://www.zhuatech.cn/ */
 package cn.zhuatech.fileflow.service;import jakarta.validation.Valid;import jakarta.validation.constraints.*;import org.springframework.stereotype.Service;import java.util.*;
 @Service public class FileBatchPlanService{public Result plan(Request r){double total=r.files().stream().mapToDouble(FileMeta::sizeMb).sum();List<String>unsupported=new ArrayList<>();for(FileMeta f:r.files())if(!supported(r.operation(),f.extension()))unsupported.add(f.name());int batches=(int)Math.ceil(total/r.maxBatchMb());double minutes=Math.round(total/r.throughputMbPerMinute()*10)/10.0;String status=unsupported.size()==r.files().size()&&!r.files().isEmpty()?"BLOCK":unsupported.isEmpty()?"READY":"REVIEW";return new Result(r.files().size(),Math.round(total*10)/10.0,Math.max(1,batches),minutes,status,unsupported);}
  private boolean supported(String op,String ext){String e=ext.toLowerCase();return switch(op.toUpperCase()){case "ARCHIVE","RENAME"->true;case "CONVERT_PDF"->List.of("doc","docx","txt","jpg","jpeg","png").contains(e);default->false;};}
