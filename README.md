@@ -1,5 +1,7 @@
 # ZhuaTech FileFlow · 知华文件批处理规划工具
 
+[简体中文](README.md) | [English](README.en.md)
+
 上海如静知华信息科技有限公司社区源码工具，用于批量文件元数据检查、格式兼容判断、容量分批与处理时间估算。[官网](https://www.zhuatech.cn/)
 
 ![FileFlow](docs/images/workspace.svg)
